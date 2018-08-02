@@ -1,3 +1,4 @@
+# 이 문제는 stack개념을 사용하여 해결하면 더 빠르다.
 from sys import stdin
 read = stdin.readline
 from collections import deque
