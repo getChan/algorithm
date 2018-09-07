@@ -9,4 +9,4 @@ for _ in range(c):
     a = [int(x) for x in read().rstrip()]
     b = [int(x) for x in read().rstrip()]
 
-
+    
