@@ -19,5 +19,5 @@ for _ in range(c):
     n = int(read().rstrip())
     triangle = []
     for __ in range(n):
-        triangle.append([int(x) for x in read().rstrip().split()])
+        triangle.append([int(x) for x in read().rs trip().split()])
     print(triPath())
