@@ -16,10 +16,12 @@ def jlis(ai, bi):
     else:
         mb = b[bi]
     maxElement = max(ma, mb)
-    for j in range(ai+1, n):
+    for j in range(ai, n-1):
+        ai += 1
         if maxElement < a[j]:
             ret = max(ret, jlis(j, bi)+1)
-    for j in range(bi+1, m):
+    for j in range(bi, m-1):
+        bi += 1
         if maxElement < b[j]:
             ret = max(ret, jlis(ai, j)+1)
     memo[ai][bi] = ret
@@ -38,8 +40,9 @@ for _ in range(c):
     maxlen = 0
 
     for i in range(n):
-        for j in range(m):
-            maxlen = max(maxlen, jlis(i, j))
+        maxlen = max(maxlen, jlis(i, 0))
+    for j in range(m):
+        maxlen = max(maxlen, jlis(0, j))
 
     print(memo)        
     print(maxlen)
