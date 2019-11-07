@@ -105,11 +105,11 @@ class DoublyLinkedList:
 		
 c = int(input())
 for i in range(c):
-  n, k = map(int, input().split())
-  lst = doubleLinkedList()
-  for j in range(1, n+1):
-	lst.append(j)
-  while n > 2:
-	it = iter(lst)
-	remove_elem(next(it))
-	it = nex
+    n, k = map(int, input().split())
+    lst = DoublyLinkedList()
+    for j in range(1, n+1):
+        lst.append(j)
+    while n > 2:
+        it = iter(lst)
+        nex = lst.remove_elem(next(it))
+        it = nex
