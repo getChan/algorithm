@@ -1,31 +1,35 @@
-from copy import deepcopy
-n = int(input())
-def dfs(i, j, chess):
-    global n
-    cnt = 0
-    if i+1 >= n:
-        return 1
-    for c in range(n):
-        if chess[i][c]:
-            new_chess = deepcopy(chess)
-            row = 1
-            r, l = c+1, c-1
-            while i+row<n:
-                new_chess[i+row][c] = False
-                if l >=0:
-                    new_chess[i+row][l] = False
-                if r < n:
-                    new_chess[i+row][r] = False
-                row += 1 
-                r += 1
-                l -= 1
-            cnt += dfs(i+1, c, new_chess)
-        else:
-            return 0
-        
-    if i == 0:
-        print(cnt)
-# 백트래킹은 가능한 경우만 stack에 push한다
-# 한 행에 2개 이상의 퀸은 올 수 없다.
-chess = [[True for _ in range(n)] for __ in range(n)]
-dfs(0, 0, chess)    
+# from pprint import pprint
+from sys import stdin
+input = stdin.readline
+n = int(input().rstrip())
+
+answer = 0
+
+def dfs(chess, row, col):
+    global answer
+    chess = list(map(list, chess))
+    if row == n-1:
+        answer += 1
+        return
+    l, r = col, col
+    for i in range(row, n):
+        chess[i][col] = 1
+        if l >= 0:
+            chess[i][l] = 1
+            l -= 1
+        if r < n:
+            chess[i][r] = 1
+            r += 1
+    for j in range(n):
+        chess[row][j] = 1
+    # pprint(chess)
+    chess = tuple(map(tuple, chess))
+    for i in range(n):
+        if not chess[row+1][i]:
+            dfs(chess, row+1, i)
+    return
+chess = tuple(tuple(0 for _ in range(n)) for __ in range(n))
+for i in range(n):
+    dfs(chess, 0, i)
+
+print(answer)
