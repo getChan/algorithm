@@ -7,7 +7,7 @@ trees = [int(_) for _ in input().split()]
 right = max(trees)
 left = 0
 
-while left < right:
+while left <= right:
     mid = (left + right) // 2
     res = sum(map(lambda x:x-mid if x-mid >0 else 0 , trees))
     if res >= m:
@@ -15,7 +15,7 @@ while left < right:
     if res == m:
         break
     elif res < m:
-        right = mid
+        right = mid -1
     else:
         left = mid + 1 # `+1`중요! 
 
