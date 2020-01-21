@@ -1,33 +1,26 @@
-from itertools import permutations
-
 k = int(input())
-symbol = input().split()
-mini, maxi = 10**(k+1), 0
+inequals = input().split()
+max_answer = '0000000000' 
+min_answer = '9999999999'
+def dfs(arr):
+    global max_answer, min_answer
+    n = len(arr)
+    if n > k:
+        result = int(''.join(map(str,arr)))
+        if result > int(max_answer):
+            max_answer = ''.join(map(str,arr))
+        if result < int(min_answer):
+            min_answer = ''.join(map(str,arr))
+        return
+    it = list(range(10))
+    for i in arr:
+        it.remove(i)
+    
+    for i in it:
+        if eval(str(arr[-1])+inequals[n-1]+str(i)):
+            dfs(arr+[i])
 
-# 최대값 : 9 ~ (9-k) / 가장 큰 수에서부터 찾아간다.
-for case in permutations([str(_) for _ in range(9,8-k,-1)]):
-    form = []
-    i = 0 
-    while i < k:
-        form.append(case[i])
-        form.append(symbol[i])
-        i += 1
-    form.append(case[-1])
-    if eval(''.join(form)):
-        maxi = ''.join(case)
-        break
-# 최소값 : 0 ~ k 로 이루어져 있다. / 가장 작은 수부터 찾아간다.
-for case in permutations([str(_) for _ in range(k+1)]):
-    form = []
-    i = 0 
-    while i < k:
-        form.append(case[i])
-        form.append(symbol[i])
-        i += 1
-    form.append(case[-1])
-    if eval(''.join(form)):
-        mini = ''.join(case)
-        break
-
-print(maxi)
-print(mini)
+for i in range(10):
+    dfs([i])
+print(max_answer)
+print(min_answer)
