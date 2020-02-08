@@ -8,6 +8,7 @@ for i in range(n):
             dp[i] = dp[j] + arr[i]
     if answer < dp[i]:
         answer = dp[i]
+    print(dp)
 
-print(answer)
+# print(answer)
 # dp[i] : i를 마지막 항으로 증가하는 부분 수열 중 합이 가장 큰 값
