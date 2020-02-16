@@ -1,16 +1,8 @@
-# greedy로 풀어보기
-# n = int(input())
-# price_per_card = [int(x)/(i+1) for i, x in enumerate(input().split())]
-# answer = 0
-# while n:
-#     most = (0, 0)
-#     for i in range(n):
-#         if price_per_card[i] > most[-1]:
-#             most = (i+1 , price_per_card[i])
-#     answer += int(n//most[0]*(most[0]*most[1]))
-#     n -= n//most[0]*most[0]
-# print(answer)
-    
-# dp로 풀어보기
 n = int(input())
-price = [int(x) for x in input().split()]
+p = [int(x) for x in input().split()]
+
+p.insert(0, 0) # 인덱스 맞춰주기 위함
+dp = [0 for _ in range(n+1)]
+for i in range(1, n+1):
+    dp[i] = max([dp[j]+p[i-j] for j in range(i)])
+print(dp[n])
