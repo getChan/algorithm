@@ -18,7 +18,6 @@ def bfs():
 
     return False
 
-
 for _ in range(int(input().rstrip())):
     n = int(input().rstrip())
     i, j = [int(x) for x in input().rstrip().split()]
